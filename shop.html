@@ -385,7 +385,7 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'YOUR_SUPABASE_ANO
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 // Configuração do Stripe
-const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY'); // Substitua pela sua chave pública do Stripe
+const stripe = Stripe('pk_live_51RzNspQcJn08hOoh8tC4lPuRyeZggpIpyEbNcwaUYqKfxSMToOhOwI2F6qFek22WSn35afvIT99njZXoCZ3PWoT900GWRECLsq'); // Substitua pela sua chave pública do Stripe
 
 // Verificar se usuário está logado ao carregar a página
 window.addEventListener('load', async () => {
