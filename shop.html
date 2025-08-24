@@ -8,13 +8,13 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:image:src" content="">
   <meta property="og:image" content="">
-  <meta name="twitter:title" content="Loja - Hypixel">
+  <meta name="twitter:title" content="Loja - Astral Legacy">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="assets/images/512xnewhypixel.png" type="image/x-icon">
-  <meta name="description" content="Loja oficial do servidor de Minecraft Hypixel.net - Compre VIP Cosmo, VIP Astral e VIP Legacy">
+  <meta name="description" content="Loja oficial do servidor de Minecraft Astral Legacy - Compre VIP Cosmo, VIP Astral e VIP Legacy">
   
   
-  <title>Loja - Hypixel</title>
+  <title>Loja - Astral Legacy</title>
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
@@ -30,7 +30,8 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
   
-  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://js.stripe.com/v3/"></script>
   
   
 </head>
@@ -46,7 +47,7 @@
                         <img src="assets/images/512xnewhypixel.png" alt="" style="height: 3rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-7" href="index.html">Hypixel.net</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-7" href="index.html">Astral Legacy</a></span>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <div class="hamburger">
@@ -57,12 +58,15 @@
                 </div>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="index.html#features13-2">O que é Hypixel</a></li>
-                    <li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="index.html#features24-4">Como entrar</a></li><li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="https://forum.hypixel.net" target="_blank">Fóruns</a></li>
+                <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="index.html#features13-2">O que é Astral Legacy</a></li>
+                    <li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="como-entrar.html">Como entrar</a></li><li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="https://forum.hypixel.net" target="_blank">Fóruns</a></li>
                     <li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="rules.html">Regras</a>
                     </li></ul>
                 
-                <div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4" href="shop.html"><span class="mobi-mbri mobi-mbri-shopping-basket mbr-iconfont mbr-iconfont-btn"></span>Loja&nbsp;</a></div>
+                <div class="navbar-buttons mbr-section-btn">
+                    <a class="btn btn-primary display-4" href="shop.html"><span class="mobi-mbri mobi-mbri-shopping-basket mbr-iconfont mbr-iconfont-btn"></span>Loja</a>
+                    <a class="btn btn-secondary display-4" href="auth.html" id="auth-btn"><span class="mobi-mbri mobi-mbri-login mbr-iconfont mbr-iconfont-btn"></span>Entrar</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -84,7 +88,7 @@
                 <div class="text-wrapper">
                     <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1"><strong>Loja VIP</strong></h1>
                     <p class="mbr-text mbr-fonts-style display-7">
-                        Adquira seu VIP e tenha acesso a benefícios exclusivos no servidor Hypixel!</p>
+                        Adquira seu VIP e tenha acesso a benefícios exclusivos no servidor Astral Legacy!</p>
                     <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-4" href="#vip-plans">Ver Planos</a></div>
                 </div>
             </div>
@@ -135,7 +139,7 @@
                             </ul>
                         </div>
                         <div class="mbr-section-btn text-center">
-                            <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=223843237-6c154546-9886-4497-8315-6c751369a413" target="_blank" class="btn btn-primary display-4">Comprar Agora</a>
+                            <button onclick="purchaseVIP('cosmo', 29.90)" class="btn btn-primary display-4">Comprar Agora</button>
                         </div>
                     </div>
                 </div>
@@ -171,7 +175,7 @@
                             </ul>
                         </div>
                         <div class="mbr-section-btn text-center">
-                            <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=223843237-6c154546-9886-4497-8315-6c751369a413" target="_blank" class="btn btn-primary display-4">Comprar Agora</a>
+                            <button onclick="purchaseVIP('astral', 49.90)" class="btn btn-primary display-4">Comprar Agora</button>
                         </div>
                     </div>
                 </div>
@@ -205,7 +209,7 @@
                             </ul>
                         </div>
                         <div class="mbr-section-btn text-center">
-                            <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=223843237-6c154546-9886-4497-8315-6c751369a413" target="_blank" class="btn btn-warning display-4">Comprar Agora</a>
+                            <button onclick="purchaseVIP('legacy', 79.90)" class="btn btn-warning display-4">Comprar Agora</button>
                         </div>
                     </div>
                 </div>
@@ -243,7 +247,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-6 my-auto px-4 align-left">
                 <p class="mbr-text text-grey mb-0 mbr-fonts-style display-7">
-                    © Copyright 2022 <strong>Hypixel</strong>. Todos os direitos reservados.<br><a href="imprint.html" class="text-primary" target="_blank">Impressum </a>| <a href="privacy.html" class="text-primary" target="_blank">Privacidade </a>| <a href="tos.html" class="text-primary" target="_blank">Termos de Serviço</a></p>
+                    © Copyright 2022 <strong>Astral Legacy</strong>. Todos os direitos reservados.<br><a href="imprint.html" class="text-primary" target="_blank">Impressum </a>| <a href="privacy.html" class="text-primary" target="_blank">Privacidade </a>| <a href="tos.html" class="text-primary" target="_blank">Termos de Serviço</a></p>
             </div>
             <div class="col-md-12 col-lg-6 px-4 align-right">
                 <div class="social-list">
@@ -363,7 +367,117 @@
 #payment-info {
     background: #f8f9fa;
 }
+
+.user-info {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-left: 10px;
+  color: white;
+  font-size: 0.9em;
+}
 </style>
+
+<script>
+// Configuração do Supabase
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'YOUR_SUPABASE_URL';
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'YOUR_SUPABASE_ANON_KEY';
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+// Configuração do Stripe
+const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY'); // Substitua pela sua chave pública do Stripe
+
+// Verificar se usuário está logado ao carregar a página
+window.addEventListener('load', async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    updateAuthButton(user);
+});
+
+// Atualizar botão de autenticação
+async function updateAuthButton(user) {
+    const authBtn = document.getElementById('auth-btn');
+    
+    if (user) {
+        try {
+            const { data: profile } = await supabase
+                .from('user_profiles')
+                .select('nickname')
+                .eq('id', user.id)
+                .single();
+
+            authBtn.innerHTML = `<span class="mobi-mbri mobi-mbri-user mbr-iconfont mbr-iconfont-btn"></span>${profile?.nickname || 'Usuário'}`;
+            authBtn.href = 'auth.html';
+        } catch (error) {
+            console.error('Erro ao carregar perfil:', error);
+        }
+    } else {
+        authBtn.innerHTML = '<span class="mobi-mbri mobi-mbri-login mbr-iconfont mbr-iconfont-btn"></span>Entrar';
+        authBtn.href = 'auth.html';
+    }
+}
+
+// Função para comprar VIP
+async function purchaseVIP(planType, price) {
+    // Verificar se usuário está logado
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user) {
+        alert('Você precisa fazer login para comprar um plano VIP!');
+        window.location.href = 'auth.html';
+        return;
+    }
+
+    try {
+        // Aqui você faria a chamada para seu backend para criar a sessão do Stripe
+        // Por enquanto, vamos simular o processo
+        
+        const planNames = {
+            'cosmo': 'VIP Cosmo',
+            'astral': 'VIP Astral', 
+            'legacy': 'VIP Legacy'
+        };
+
+        // Simular criação de sessão do Stripe
+        // Em produção, você faria uma chamada para seu backend aqui
+        const response = await fetch('/api/create-checkout-session', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                planType,
+                price,
+                userId: user.id,
+                planName: planNames[planType]
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao criar sessão de pagamento');
+        }
+
+        const session = await response.json();
+        
+        // Redirecionar para o Stripe Checkout
+        const result = await stripe.redirectToCheckout({
+            sessionId: session.id
+        });
+
+        if (result.error) {
+            alert('Erro ao processar pagamento: ' + result.error.message);
+        }
+        
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao processar compra. Tente novamente mais tarde.');
+    }
+}
+
+// Monitorar mudanças no estado de autenticação
+supabase.auth.onAuthStateChange((event, session) => {
+    updateAuthButton(session?.user);
+});
+</script>
 
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/parallax/jarallax.js"></script>
