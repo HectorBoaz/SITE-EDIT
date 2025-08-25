@@ -65,7 +65,7 @@
                 
                 <div class="navbar-buttons mbr-section-btn">
                     <a class="btn btn-primary display-4" href="shop.html"><span class="mobi-mbri mobi-mbri-shopping-basket mbr-iconfont mbr-iconfont-btn"></span>Loja</a>
-                    <a class="btn btn-secondary display-4" href="auth.html" id="auth-btn"><span class="mobi-mbri mobi-mbri-login mbr-iconfont mbr-iconfont-btn"></span>Entrar</a>
+                    <a class="btn btn-secondary display-4" href="auth.html" id="auth-btn"><span class="mobi-mbri mobi-mbri-login mbr-iconfont mbr-iconfont-btn"></span><span id="auth-text">Entrar</span></a>
                 </div>
             </div>
         </div>
@@ -252,23 +252,8 @@
             <div class="col-md-12 col-lg-6 px-4 align-right">
                 <div class="social-list">
                     <div class="soc-item">
-                        <a href="https://twitter.com" target="_blank">
-                            <span class="mbr-iconfont mbr-iconfont-social socicon-twitter socicon"></span>
-                        </a>
-                    </div>
-                    <div class="soc-item">
-                        <a href="https://tiktok.com" target="_blank">
-                            <span class="mbr-iconfont mbr-iconfont-social socicon-tiktok socicon"></span>
-                        </a>
-                    </div>
-                    <div class="soc-item">
                         <a href="https://youtube.com" target="_blank">
                             <span class="mbr-iconfont mbr-iconfont-social socicon-youtube socicon"></span>
-                        </a>
-                    </div>
-                    <div class="soc-item">
-                        <a href="https://instagram.com" target="_blank">
-                            <span class="mbr-iconfont mbr-iconfont-social socicon-instagram socicon"></span>
                         </a>
                     </div>
                     <div class="soc-item">
@@ -396,6 +381,7 @@ window.addEventListener('load', async () => {
 // Atualizar botão de autenticação
 async function updateAuthButton(user) {
     const authBtn = document.getElementById('auth-btn');
+    const authText = document.getElementById('auth-text');
     
     if (user) {
         try {
@@ -405,13 +391,13 @@ async function updateAuthButton(user) {
                 .eq('id', user.id)
                 .single();
 
-            authBtn.innerHTML = `<span class="mobi-mbri mobi-mbri-user mbr-iconfont mbr-iconfont-btn"></span>${profile?.nickname || 'Usuário'}`;
+            authBtn.innerHTML = `<span class="mobi-mbri mobi-mbri-user mbr-iconfont mbr-iconfont-btn"></span><span>${profile?.nickname || 'Usuário'}</span>`;
             authBtn.href = 'auth.html';
         } catch (error) {
             console.error('Erro ao carregar perfil:', error);
         }
     } else {
-        authBtn.innerHTML = '<span class="mobi-mbri mobi-mbri-login mbr-iconfont mbr-iconfont-btn"></span>Entrar';
+        authBtn.innerHTML = '<span class="mobi-mbri mobi-mbri-login mbr-iconfont mbr-iconfont-btn"></span><span>Entrar</span>';
         authBtn.href = 'auth.html';
     }
 }
@@ -422,8 +408,7 @@ async function purchaseVIP(planType, price) {
     const { data: { user } } = await supabase.auth.getUser();
     
     if (!user) {
-        alert('Você precisa fazer login para comprar um plano VIP!');
-        window.location.href = 'auth.html';
+        alert('Você deve efetuar login em nosso site para realizar a compra');
         return;
     }
 

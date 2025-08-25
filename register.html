@@ -6,12 +6,12 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:image:src" content="">
   <meta property="og:image" content="">
-  <meta name="twitter:title" content="Login - Astral Legacy">
+  <meta name="twitter:title" content="Cadastro - Astral Legacy">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="assets/images/512xnewhypixel.png" type="image/x-icon">
-  <meta name="description" content="Faça login ou registre-se no servidor de Minecraft Astral Legacy">
+  <meta name="description" content="Crie sua conta no servidor de Minecraft Astral Legacy">
   
-  <title>Login - Astral Legacy</title>
+  <title>Cadastro - Astral Legacy</title>
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
@@ -59,6 +59,7 @@
                 
                 <div class="navbar-buttons mbr-section-btn">
                     <a class="btn btn-primary display-4" href="shop.html"><span class="mobi-mbri mobi-mbri-shopping-basket mbr-iconfont mbr-iconfont-btn"></span>Loja</a>
+                    <a class="btn btn-secondary display-4" href="auth.html" id="auth-btn"><span class="mobi-mbri mobi-mbri-login mbr-iconfont mbr-iconfont-btn"></span>Entrar</a>
                 </div>
             </div>
         </div>
@@ -75,97 +76,51 @@
             </div>
             <div class="col-12 col-md">
                 <div class="text-wrapper">
-                    <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1"><strong>Entrar na Conta</strong></h1>
+                    <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1"><strong>Criar Conta</strong></h1>
                     <p class="mbr-text mbr-fonts-style display-7">
-                        Faça login ou registre-se para acessar benefícios exclusivos do Astral Legacy!</p>
+                        Registre-se para acessar benefícios exclusivos do Astral Legacy!</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section data-bs-version="5.1" class="content14 cid-auth-forms" id="auth-forms">
+<section data-bs-version="5.1" class="content14 cid-register-form" id="register-form">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
-                <!-- Formulário de Login -->
-                <div id="login-form" class="auth-form">
-                    <div class="card">
-                        <div class="card-body p-4">
-                            <h3 class="mbr-section-title mbr-fonts-style mb-4 display-2 text-center">
-                                <strong>Entrar</strong>
-                            </h3>
-                            <form id="loginForm">
-                                <div class="form-group mb-3">
-                                    <label class="form-control-label">Email</label>
-                                    <input type="email" class="form-control" id="loginEmail" required>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="form-control-label">Senha</label>
-                                    <input type="password" class="form-control" id="loginPassword" required>
-                                </div>
-                                <div class="mbr-section-btn text-center">
-                                    <button type="submit" class="btn btn-primary display-4">Entrar</button>
-                                </div>
-                            </form>
-                            <div class="text-center mt-3">
-                                <p>Não tem uma conta? <a href="register.html">Registre-se aqui</a></p>
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h3 class="mbr-section-title mbr-fonts-style mb-4 display-2 text-center">
+                            <strong>Registrar</strong>
+                        </h3>
+                        <form id="registerForm">
+                            <div class="form-group mb-3">
+                                <label class="form-control-label">Nickname no Servidor</label>
+                                <input type="text" class="form-control" id="registerNickname" required>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Formulário de Registro -->
-                <div id="register-form" class="auth-form" style="display: none;">
-                    <div class="card">
-                        <div class="card-body p-4">
-                            <h3 class="mbr-section-title mbr-fonts-style mb-4 display-2 text-center">
-                                <strong>Registrar</strong>
-                            </h3>
-                            <form id="registerForm">
-                                <div class="form-group mb-3">
-                                    <label class="form-control-label">Nickname no Servidor</label>
-                                    <input type="text" class="form-control" id="registerNickname" required>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="form-control-label">Email</label>
-                                    <input type="email" class="form-control" id="registerEmail" required>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="form-control-label">Senha</label>
-                                    <input type="password" class="form-control" id="registerPassword" required minlength="6">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="form-control-label">Confirmar Senha</label>
-                                    <input type="password" class="form-control" id="confirmPassword" required>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="form-control-label">Número de Celular</label>
-                                    <input type="tel" class="form-control" id="registerPhone">
-                                </div>
-                                <div class="mbr-section-btn text-center">
-                                    <button type="submit" class="btn btn-primary display-4">Registrar</button>
-                                </div>
-                            </form>
-                            <div class="text-center mt-3">
-                                <p>Já tem uma conta? <a href="auth.html">Entre aqui</a></p>
+                            <div class="form-group mb-3">
+                                <label class="form-control-label">Email</label>
+                                <input type="email" class="form-control" id="registerEmail" required>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Área do usuário logado -->
-                <div id="user-area" class="auth-form" style="display: none;">
-                    <div class="card">
-                        <div class="card-body p-4 text-center">
-                            <h3 class="mbr-section-title mbr-fonts-style mb-4 display-2">
-                                <strong>Bem-vindo!</strong>
-                            </h3>
-                            <p id="user-info" class="mbr-text mbr-fonts-style display-7"></p>
-                            <div class="mbr-section-btn">
-                                <a href="shop.html" class="btn btn-primary display-4">Ir para a Loja</a>
-                                <button onclick="logout()" class="btn btn-secondary display-4">Sair</button>
+                            <div class="form-group mb-3">
+                                <label class="form-control-label">Senha</label>
+                                <input type="password" class="form-control" id="registerPassword" required minlength="6">
                             </div>
+                            <div class="form-group mb-3">
+                                <label class="form-control-label">Confirmar Senha</label>
+                                <input type="password" class="form-control" id="confirmPassword" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="form-control-label">Número de Celular</label>
+                                <input type="tel" class="form-control" id="registerPhone">
+                            </div>
+                            <div class="mbr-section-btn text-center">
+                                <button type="submit" class="btn btn-primary display-4">Registrar</button>
+                            </div>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Já tem uma conta? <a href="auth.html">Entre aqui</a></p>
                         </div>
                     </div>
                 </div>
@@ -203,33 +158,33 @@
 </section>
 
 <style>
-.auth-form .card {
+.card {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     border: none;
 }
 
-.auth-form .form-control {
+.form-control {
     border-radius: 8px;
     border: 2px solid #e0e0e0;
     padding: 12px 15px;
     transition: all 0.3s ease;
 }
 
-.auth-form .form-control:focus {
+.form-control:focus {
     border-color: #007bff;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-.auth-form .btn {
+.btn {
     border-radius: 8px;
     padding: 12px 30px;
     font-weight: 600;
     transition: all 0.3s ease;
 }
 
-.auth-form .btn:hover {
+.btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -257,49 +212,6 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'YOUR_SUPABASE_URL';
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'YOUR_SUPABASE_ANON_KEY';
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-// Verificar se usuário está logado ao carregar a página
-window.addEventListener('load', async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-        await showUserArea(user);
-    }
-});
-
-// Função para mostrar formulário de registro
-function showRegisterForm() {
-    window.location.href = 'register.html';
-}
-
-// Função para mostrar formulário de login
-function showLoginForm() {
-    document.getElementById('login-form').style.display = 'block';
-    document.getElementById('register-form').style.display = 'none';
-    document.getElementById('user-area').style.display = 'none';
-}
-
-// Função para mostrar área do usuário
-async function showUserArea(user) {
-    try {
-        const { data: profile } = await supabase
-            .from('user_profiles')
-            .select('nickname, phone')
-            .eq('id', user.id)
-            .single();
-
-        document.getElementById('login-form').style.display = 'none';
-        document.getElementById('register-form').style.display = 'none';
-        document.getElementById('user-area').style.display = 'block';
-        
-        document.getElementById('user-info').innerHTML = `
-            <strong>Nickname:</strong> ${profile?.nickname || 'Não definido'}<br>
-            <strong>Email:</strong> ${user.email}<br>
-            <strong>Celular:</strong> ${profile?.phone || 'Não informado'}
-        `;
-    } catch (error) {
-        console.error('Erro ao carregar perfil:', error);
-    }
-}
-
 // Função para mostrar mensagens
 function showMessage(message, type = 'success') {
     const messageDiv = document.getElementById('message');
@@ -311,28 +223,6 @@ function showMessage(message, type = 'success') {
         messageDiv.style.display = 'none';
     }, 5000);
 }
-
-// Login
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    
-    try {
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email,
-            password
-        });
-        
-        if (error) throw error;
-        
-        showMessage('Login realizado com sucesso!');
-        await showUserArea(data.user);
-    } catch (error) {
-        showMessage(error.message, 'danger');
-    }
-});
 
 // Registro
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
@@ -363,32 +253,12 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         
         if (error) throw error;
         
-        showMessage('Conta criada com sucesso! Verifique seu email para confirmar.');
-        showLoginForm();
+        showMessage('Conta criada com sucesso! Redirecionando para o login...');
+        setTimeout(() => {
+            window.location.href = 'auth.html';
+        }, 2000);
     } catch (error) {
         showMessage(error.message, 'danger');
-    }
-});
-
-// Logout
-async function logout() {
-    try {
-        const { error } = await supabase.auth.signOut();
-        if (error) throw error;
-        
-        showMessage('Logout realizado com sucesso!');
-        showLoginForm();
-    } catch (error) {
-        showMessage(error.message, 'danger');
-    }
-}
-
-// Verificar mudanças no estado de autenticação
-supabase.auth.onAuthStateChange((event, session) => {
-    if (event === 'SIGNED_IN' && session) {
-        showUserArea(session.user);
-    } else if (event === 'SIGNED_OUT') {
-        showLoginForm();
     }
 });
 </script>
