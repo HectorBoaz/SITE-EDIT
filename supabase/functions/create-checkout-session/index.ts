@@ -14,7 +14,7 @@ Deno.serve(async (req) => {
     const { planType, price, userId, planName } = await req.json()
 
     // Configurar Stripe
-    const stripe = Stripe(Deno.env.get('STRIPE_SECRET_KEY') || '')
+    const stripe = Stripe(Deno.env.get('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') || '')
 
     // Criar sessão de checkout
     const session = await stripe.checkout.sessions.create({

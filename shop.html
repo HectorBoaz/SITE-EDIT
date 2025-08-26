@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="assets/parallax/jarallax.css">
-  <link rel="stylesheet" href="assets/animatecss/animate.css">
+  <link rel="stylesheet" hrefd="assets/animatecss/animate.css">
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
   <link rel="stylesheet" href="assets/socicon/css/styles.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
@@ -374,12 +374,12 @@
 
 <script>
 // Configuração do Supabase
-const supabaseUrl = 'YOUR_SUPABASE_URL';
-const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+const supabaseUrl = 'https://sofhwoqgudjnicwjgjhs.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNvZmh3b3FndWRqbmljd2pnamhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwMDU4MDgsImV4cCI6MjA3MTU4MTgwOH0.KgBo9hUkNESmCAK333E2quZdfvlGWNuTlsz5wnvASe4';
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 // Configuração do Stripe
-const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY');
+const stripe = Stripe('pk_live_51RzNspQcJn08hOoh8tC4lPuRyeZggpIpyEbNcwaUYqKfxSMToOhOwI2F6qFek22WSn35afvIT99njZXoCZ3PWoT900GWRECLsq');
 
 // Verificar se usuário está logado ao carregar a página
 window.addEventListener('load', async () => {
