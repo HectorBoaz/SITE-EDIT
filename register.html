@@ -237,7 +237,12 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     }
 
     try {
-        // Criar usuário no Auth com metadados
+        console.log('Iniciando cadastro...');
+        
+        // Primeiro, verificar se o email já existe
+        const { data: existingUser } = await supabase.auth.getUser();
+        
+        // Criar usuário no Auth com metadados mais simples
         const { data, error } = await supabase.auth.signUp({
             email,
             password,
@@ -245,31 +250,46 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
                 data: {
                     nickname: nickname,
                     phone: phone
+                },
+                emailRedirectTo: undefined // Desabilitar confirmação por email
                 }
-            }
         });
+
+        console.log('Resposta do Supabase:', { data, error });
 
         if (error) throw error;
 
-        // Verificar se o usuário foi criado
+        // Verificar se o usuário foi criado com sucesso
         if (!data.user) {
-            showMessage('Este e-mail já está cadastrado!', 'danger');
+            showMessage('Erro ao criar usuário. Tente novamente.', 'danger');
             return;
         }
 
-        // Verificar se o email já existe mas não foi confirmado
-        if (data.user && data.user.identities && data.user.identities.length === 0) {
-            showMessage('Este e-mail já está cadastrado. Verifique sua caixa de entrada para confirmar.', 'warning');
-            return;
-        }
+        console.log('Usuário criado com sucesso:', data.user.id);
 
         // Sucesso no cadastro
-        showMessage('Conta criada com sucesso! Você já pode fazer login.', 'success');
-        setTimeout(() => window.location.href = 'auth.html', 3000);
+        showMessage('Conta criada com sucesso! Redirecionando para o login...', 'success');
+        
+        // Aguardar um pouco para o trigger criar o perfil
+        setTimeout(() => {
+            window.location.href = 'auth.html';
+        }, 2000);
 
     } catch (err) {
         console.error('Erro detalhado:', err);
-        showMessage('Erro no cadastro: ' + err.message, 'danger');
+        
+        let errorMessage = 'Erro no cadastro: ';
+        if (err.message.includes('already registered')) {
+            errorMessage = 'Este e-mail já está cadastrado!';
+        } else if (err.message.includes('Invalid email')) {
+            errorMessage = 'E-mail inválido!';
+        } else if (err.message.includes('Password')) {
+            errorMessage = 'Senha deve ter pelo menos 6 caracteres!';
+        } else {
+            errorMessage += err.message;
+        }
+        
+        showMessage(errorMessage, 'danger');
     }
 });
 </script>

@@ -332,10 +332,14 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     const password = document.getElementById('loginPassword').value;
     
     try {
+        console.log('Tentando fazer login...');
+        
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password
         });
+        
+        console.log('Resposta do login:', { data, error });
         
         if (error) throw error;
         
@@ -343,7 +347,17 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         await showUserArea(data.user);
     } catch (error) {
         console.error('Erro no login:', error);
-        showMessage('Erro no login: ' + error.message, 'danger');
+        
+        let errorMessage = 'Erro no login: ';
+        if (error.message.includes('Invalid login credentials')) {
+            errorMessage = 'Email ou senha incorretos!';
+        } else if (error.message.includes('Email not confirmed')) {
+            errorMessage = 'Confirme seu email antes de fazer login!';
+        } else {
+            errorMessage += error.message;
+        }
+        
+        showMessage(errorMessage, 'danger');
     }
 });
 
