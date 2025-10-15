@@ -26,8 +26,6 @@
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-  
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   
@@ -207,11 +205,6 @@
 </style>
 
 <script>
-// Configuração do Supabase
-const supabaseUrl = 'https://sofhwoqgudjnicwjgjhs.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNvZmh3b3FndWRqbmljd2pnamhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwMDU4MDgsImV4cCI6MjA3MTU4MTgwOH0.KgBo9hUkNESmCAK333E2quZdfvlGWNuTlsz5wnvASe4';
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
 // Função para mostrar mensagens
 function showMessage(message, type = 'success') {
     const messageDiv = document.getElementById('message');
@@ -236,90 +229,8 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         return;
     }
 
-    try {
-        console.log('Iniciando cadastro...');
-        
-        // Criar usuário no Auth com metadados
-        const { data, error } = await supabase.auth.signUp({
-            email,
-            password,
-            options: {
-                data: {
-                    nickname: nickname,
-                    phone: phone
-                }
-            }
-        });
-
-        console.log('Resposta do Supabase:', { data, error });
-
-        if (error) throw error;
-
-        // Verificar se o usuário foi criado
-        if (data.user) {
-            console.log('Usuário criado com sucesso:', data.user.id);
-            
-            // Aguardar um pouco para o trigger processar
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            // Tentar criar perfil manualmente se não foi criado pelo trigger
-            try {
-                const { data: existingProfile } = await supabase
-                    .from('user_profiles')
-                    .select('id')
-                    .eq('id', data.user.id)
-                    .single();
-                
-                if (!existingProfile) {
-                    console.log('Criando perfil manualmente...');
-                    const { error: profileError } = await supabase
-                        .from('user_profiles')
-                        .insert({
-                            id: data.user.id,
-                            nickname: nickname,
-                            phone: phone
-                        });
-                    
-                    if (profileError) {
-                        console.warn('Erro ao criar perfil manualmente:', profileError);
-                    } else {
-                        console.log('Perfil criado manualmente com sucesso');
-                    }
-                }
-            } catch (profileErr) {
-                console.warn('Erro ao verificar/criar perfil:', profileErr);
-            }
-            
-            // Sucesso no cadastro
-            showMessage('Conta criada com sucesso! Redirecionando para o login...', 'success');
-            
-            setTimeout(() => {
-                window.location.href = 'auth.html';
-            }, 2000);
-        } else {
-            showMessage('Erro inesperado ao criar usuário. Tente novamente.', 'danger');
-        }
-
-    } catch (err) {
-        console.error('Erro detalhado:', err);
-        
-        let errorMessage = 'Erro no cadastro: ';
-        if (err.message.includes('already registered')) {
-            errorMessage = 'Este e-mail já está cadastrado!';
-        } else if (err.message.includes('User already registered')) {
-            errorMessage = 'Este e-mail já está cadastrado!';
-        } else if (err.message.includes('Invalid email')) {
-            errorMessage = 'E-mail inválido!';
-        } else if (err.message.includes('Password')) {
-            errorMessage = 'Senha deve ter pelo menos 6 caracteres!';
-        } else if (err.message.includes('Database error')) {
-            errorMessage = 'Erro no servidor. Tente novamente em alguns minutos.';
-        } else {
-            errorMessage += err.message;
-        }
-        
-        showMessage(errorMessage, 'danger');
-    }
+    // Funcionalidade de registro desativada
+    showMessage('Funcionalidade de registro temporariamente desativada. Entre em contato com o suporte.', 'danger');
 });
 </script>
 
