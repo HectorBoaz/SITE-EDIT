@@ -239,10 +239,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     try {
         console.log('Iniciando cadastro...');
         
-        // Primeiro, verificar se o email já existe
-        const { data: existingUser } = await supabase.auth.getUser();
-        
-        // Criar usuário no Auth com metadados mais simples
+        // Criar usuário no Auth com metadados
         const { data, error } = await supabase.auth.signUp({
             email,
             password,
@@ -250,30 +247,58 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
                 data: {
                     nickname: nickname,
                     phone: phone
-                },
-                emailRedirectTo: undefined // Desabilitar confirmação por email
                 }
+            }
         });
 
         console.log('Resposta do Supabase:', { data, error });
 
         if (error) throw error;
 
-        // Verificar se o usuário foi criado com sucesso
-        if (!data.user) {
-            showMessage('Erro ao criar usuário. Tente novamente.', 'danger');
-            return;
+        // Verificar se o usuário foi criado
+        if (data.user) {
+            console.log('Usuário criado com sucesso:', data.user.id);
+            
+            // Aguardar um pouco para o trigger processar
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Tentar criar perfil manualmente se não foi criado pelo trigger
+            try {
+                const { data: existingProfile } = await supabase
+                    .from('user_profiles')
+                    .select('id')
+                    .eq('id', data.user.id)
+                    .single();
+                
+                if (!existingProfile) {
+                    console.log('Criando perfil manualmente...');
+                    const { error: profileError } = await supabase
+                        .from('user_profiles')
+                        .insert({
+                            id: data.user.id,
+                            nickname: nickname,
+                            phone: phone
+                        });
+                    
+                    if (profileError) {
+                        console.warn('Erro ao criar perfil manualmente:', profileError);
+                    } else {
+                        console.log('Perfil criado manualmente com sucesso');
+                    }
+                }
+            } catch (profileErr) {
+                console.warn('Erro ao verificar/criar perfil:', profileErr);
+            }
+            
+            // Sucesso no cadastro
+            showMessage('Conta criada com sucesso! Redirecionando para o login...', 'success');
+            
+            setTimeout(() => {
+                window.location.href = 'auth.html';
+            }, 2000);
+        } else {
+            showMessage('Erro inesperado ao criar usuário. Tente novamente.', 'danger');
         }
-
-        console.log('Usuário criado com sucesso:', data.user.id);
-
-        // Sucesso no cadastro
-        showMessage('Conta criada com sucesso! Redirecionando para o login...', 'success');
-        
-        // Aguardar um pouco para o trigger criar o perfil
-        setTimeout(() => {
-            window.location.href = 'auth.html';
-        }, 2000);
 
     } catch (err) {
         console.error('Erro detalhado:', err);
@@ -281,10 +306,14 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         let errorMessage = 'Erro no cadastro: ';
         if (err.message.includes('already registered')) {
             errorMessage = 'Este e-mail já está cadastrado!';
+        } else if (err.message.includes('User already registered')) {
+            errorMessage = 'Este e-mail já está cadastrado!';
         } else if (err.message.includes('Invalid email')) {
             errorMessage = 'E-mail inválido!';
         } else if (err.message.includes('Password')) {
             errorMessage = 'Senha deve ter pelo menos 6 caracteres!';
+        } else if (err.message.includes('Database error')) {
+            errorMessage = 'Erro no servidor. Tente novamente em alguns minutos.';
         } else {
             errorMessage += err.message;
         }
